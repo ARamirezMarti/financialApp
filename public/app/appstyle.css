@@ -1,0 +1,73 @@
+body{
+    background-image: url("../../assets/deg.png");
+}
+.container-fluid{
+    background-color: white;
+    text-align: center;
+    margin-top: 2%;
+    height: 50rem;
+    border-radius: 5%;
+}
+
+/* NAVIGATION*/
+.navcontainer{
+    border-right: 1px solid red;   
+    padding-top: 2%;
+    height: 100%;
+}
+
+.navcontainer button{
+    padding-top: 3px;
+    display:grid;
+    margin-top:30px;
+    background-color: rgb(203, 164, 240);
+    border: 1px solid blue;   
+
+}
+.userinfo{
+   font-size: 10px;
+    border: 1px solid red;   
+
+}
+.userinfo li{
+    list-style-type: none;
+    font-size: large;
+}
+
+
+/* CENTER  */
+.center{
+    border: 1px solid red; 
+    float: right;
+    height: 100%;
+}
+/* min sumary*/
+.min{
+    border: 1px solid blue; 
+    margin-top: 1%;
+    height: 25%;
+}
+.res{
+    font-weight: 800;
+    font-size: 30px;
+    margin-top: 3%;
+    border: 1px solid yellow;
+}
+table, th, td {
+    margin-top: 10px;
+  }
+
+
+  /* max summary*/
+.max{
+    margin-top: 2%;
+    border: 1px solid green;
+    float: left;
+   
+
+}
+#incDiv,#expDiv{
+    
+    visibility: hidden;
+    
+}
