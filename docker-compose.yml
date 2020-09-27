@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+    database:
+      build: 
+          context: .
+      image: customsql
+      restart: always
+      volumes: 
+        -  ./db/db_data:/var/lib/mysql/
+      environment:
+        MYSQL_ROOT_PASSWORD: example
+        MYSQL_DATABASE: financial
+
+  
+    adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8080:8080
