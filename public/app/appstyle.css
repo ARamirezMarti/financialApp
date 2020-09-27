@@ -11,7 +11,6 @@ body{
 
 /* NAVIGATION*/
 .navcontainer{
-    border-right: 1px solid red;   
     padding-top: 2%;
     height: 100%;
 }
@@ -20,13 +19,11 @@ body{
     padding-top: 3px;
     display:grid;
     margin-top:30px;
-    background-color: rgb(203, 164, 240);
-    border: 1px solid blue;   
+    background-color: rgb(74, 167, 120);
 
 }
 .userinfo{
    font-size: 10px;
-    border: 1px solid red;   
 
 }
 .userinfo li{
@@ -37,21 +34,21 @@ body{
 
 /* CENTER  */
 .center{
-    border: 1px solid red; 
+    border-left: 1px dotted black; 
     float: right;
     height: 100%;
 }
 /* min sumary*/
 .min{
-    border: 1px solid blue; 
     margin-top: 1%;
     height: 25%;
+    border-bottom: 1px dotted black; 
+
 }
 .res{
     font-weight: 800;
     font-size: 30px;
     margin-top: 3%;
-    border: 1px solid yellow;
 }
 table, th, td {
     margin-top: 10px;
@@ -61,13 +58,12 @@ table, th, td {
   /* max summary*/
 .max{
     margin-top: 2%;
-    border: 1px solid green;
     float: left;
    
 
 }
 #incDiv,#expDiv{
     
-    visibility: hidden;
+    display: none;
     
 }

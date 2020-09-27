@@ -8,20 +8,21 @@ $(document).ready(function () {
     inc.click(function (e) { 
         e.preventDefault();
         var incDiv= document.getElementById("incDiv");
-        if(incDiv.style.visibility=="hidden"){
-            incDiv.style.visibility="visible"
+        if(incDiv.style.display=="none"){
+            incDiv.style.display="inline"
+            s
         }else{
-            incDiv.style.visibility="hidden"
+            incDiv.style.display="none"
         }
     });
       
     exp.click(function (e) { 
         e.preventDefault();
         var expDiv = document.getElementById("expDiv");
-        if(expDiv.style.visibility=="hidden"){
-            expDiv.style.visibility="visible"
+        if(expDiv.style.display=="none"){
+            expDiv.style.display="inline"
         }else{
-            expDiv.style.visibility="hidden"
+            expDiv.style.display="none"
         }
     });
 
