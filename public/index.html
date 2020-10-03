@@ -6,30 +6,74 @@
     <title>Financial portal</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <link rel="stylesheet" href="style.css">
+
+    
 
 </head>
 <body>
 
-  <div class="container">
+  <div id="navi" class="container">
     <h1> Financial App Login</h1>
-
+    <p id="alert"></p>
     <form class="form">
         <div class="form-group">
           <label for="email">Your email address</label>
           <input type="email" class="form-control" id="email" placeholder="Your email">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Your Password</label>
+          <label for="password">Your Password</label>
           <input type="password" class="form-control" id="pass" placeholder=" Your Password">
         </div>
+        <button type="submit" id="logSubmit" class="btn btn-outline-success">Log in</button>
+
         
-        <button type="submit"  class="btn btn-primary">Submit</button>
+
       </form>
+      <button type="button" id="signup"  class="btn btn-link"> Sign Up with new account</button>
+
+
   </div>
 
 
-    
+  <div id="sign" class="container">
+    <h2>Sign UP Financial App Login</h2>
+        <p id="alertSign"></p>
+
+    <form class="form">
+      <div class="form-group">
+        <label for="acc">Account name</label>
+        <input type="acc" class="form-control" id="accSign" placeholder="Your desired account name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Your Password</label>
+        <input type="password" class="form-control" id="passSign" placeholder=" Your Password">
+      </div>
+      <div class="form-group">
+        <label for="email">Your email address</label>
+        <input type="email" class="form-control" id="emailSign" placeholder="Your email">
+        
+        <button type="button" id="signupSubmit" class="btn btn-outline-success">Submit </button>
+       
+      </div>
+      <button type="submit" id="logBtn"  class="btn btn-link"> Go back Log in</button>
+      
+
+      
+    </form>
+
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  
+
+  <script type="text/javascript" src="./services/login.service.js"></script>
+  <script type="text/javascript" src="./main.js"></script>
+
+
 </body>
 </html>

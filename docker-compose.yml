@@ -12,10 +12,14 @@ services:
       environment:
         MYSQL_ROOT_PASSWORD: example
         MYSQL_DATABASE: financial
-
-  
+      ports:  
+        - 3306:3306
+      
     adminer:
       image: adminer
+      depends_on: 
+        - database
       restart: always
       ports:
         - 8080:8080
+

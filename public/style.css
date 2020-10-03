@@ -1,5 +1,5 @@
 body{
-    background-image: url("../assets/deg.png");
+    background-image: url("./assets/deg.png");
 }
 .container{
     background-color: white;
@@ -20,5 +20,26 @@ body{
     font-weight: bold;
 }
 .form-group{
-    margin-top: 10%;
+    margin-top: 5%;
+}
+
+#sign{   
+    display: none;
+}
+
+.container h2{
+    padding-top: 1%;
+    font-style: italic;
+    color:  rgb(61, 93, 196);
+    font-weight: bold;
+}
+#sign button{
+    margin-top: 5px;
+}
+#navi button{
+    margin-top: 5px;
+}
+.alert{
+    color: red;
+    font-weight: bolder;
 }
