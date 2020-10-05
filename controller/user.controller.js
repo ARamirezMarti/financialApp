@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const JWT = require('jsonwebtoken');
 const SQL = require('../db/db.service');
 
 const sqlInstance = new SQL();
@@ -14,7 +15,7 @@ const userController = {
         throw err;
       }
       // Passing an array of form to insert into user table
-      sqlInstance.query('INSERT INTO ACCOUNTS(ACCOUNT_NAME, ACCOUNT_PASS,ACCOUNT_EMAIL) VALUES(?,?,?)', [body.ACCOUNT_NAME, result, body.ACCOUNT_EMAIL], (error) => {
+      sqlInstance.query('INSERT INTO ACCOUNTS(ACCOUNT_NAME, ACCOUNT_PASS,ACCOUNT_EMAIL) VALUES(?,?,?)', [body.ACCOUNT_NAME, result, body.ACCOUNT_EMAIL], (error, results) => {
         if (error) {
           // handle duplicate entry
           if (error.code === 'ER_DUP_ENTRY') {
@@ -25,7 +26,9 @@ const userController = {
           }
         }
 
+        const token = JWT.sign(body, 'secret', { expiresIn: 60 * 60 * 60 });
         // TODO: - Redirection to App.html or send password incorrect
+        res.cookie('token', token);
         return res.status(301).json({ ok: true, redirect: '/app' });
       });
     });
@@ -50,7 +53,10 @@ const userController = {
         if (err)(console.log(error));
 
         if (unhashed) {
+          const token = JWT.sign(body, 'secret', { expiresIn: 60 * 60 * 60 });
+
           //  Redirection to App.html or send password incorrect
+          res.cookie('token', token);
           return res.status(301).json({ ok: true, redirect: '/app' });
         }
         return res.status(200).json({ ok: false, tag: '<span class="alert">Email or password Incorrect</span>' });

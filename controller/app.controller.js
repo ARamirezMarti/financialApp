@@ -1,10 +1,12 @@
+/* TODO:
+  - ¿Token en cada ruta para verificar que sigue siendo el mismo usuario? */
+
 const path = require('path');
 const fs = require('fs');
 
 const appController = {
 // el problema aqui
   app(req, res) {
-    console.log("estamos en app");
     fs.readFile(path.resolve(__dirname, '../public/app/app.html'), null, (error, data) => {
       if (error) {
         res.writeHead(404);

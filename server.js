@@ -3,9 +3,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
 const SQL = require('./db/db.service');
 
 const app = express();
+
+app.use(cookieParser());
 
 app.use(cors({
   origin: true,
