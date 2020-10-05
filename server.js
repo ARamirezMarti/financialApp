@@ -1,16 +1,23 @@
 /* eslint-disable no-console */
+// Imports
 const express = require('express');
+
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+module.exports = {
+  io,
+};
+
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-
 const SQL = require('./db/db.service');
 
-const app = express();
-
+// Middles
 app.use(cookieParser());
-
 app.use(cors({
   origin: true,
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
@@ -35,6 +42,6 @@ sqlInstance.connect((err) => {
   console.log('SQL Database online');
 });
 
-app.listen(3500, () => {
+server.listen(3500, () => {
   console.log('server listening on port 3500');
 });

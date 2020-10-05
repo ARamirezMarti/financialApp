@@ -26,7 +26,7 @@ const userController = {
           }
         }
 
-        const token = JWT.sign(body, 'secret', { expiresIn: 60 * 60 * 60 });
+        const token = JWT.sign(body, 'secret', { expiresIn: '7d' });
         // TODO: - Redirection to App.html or send password incorrect
         res.cookie('token', token);
         return res.status(301).json({ ok: true, redirect: '/app' });
@@ -53,7 +53,7 @@ const userController = {
         if (err)(console.log(error));
 
         if (unhashed) {
-          const token = JWT.sign(body, 'secret', { expiresIn: 60 * 60 * 60 });
+          const token = JWT.sign(body, 'secret', { expiresIn: '7d' });
 
           //  Redirection to App.html or send password incorrect
           res.cookie('token', token);
