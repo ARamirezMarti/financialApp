@@ -1,21 +1,17 @@
-/* TODO:
-  - ¿Token en cada ruta para verificar que sigue siendo el mismo usuario? */
+
 
 const path = require('path');
 const fs = require('fs');
 const JWT = require('jsonwebtoken');
-const { io } = require('../server');
-const { queries } = require('./service/app.service');
-
-// Socket io
-io.on('connect', () => {
-  console.log('connected from server');
-});
+const { queries } = require('./service/appserver.service');
 
 // Routes
 const appController = {
   user: {},
   app(req, res) {
+    res.sendFile(path.resolve(__dirname, '../public/app/app.html'));
+  },
+  async getdata(req, res) {
     JWT.verify(req.cookies.token, 'secret', (err, decoded) => {
       if (err) { console.log(err); }
       this.user = {
@@ -23,17 +19,9 @@ const appController = {
       };
     });
     console.log(this.user.email);
-    const result = queries.getOperations(this.user);
-
-    fs.readFile(path.resolve(__dirname, '../public/app/app.html'), null, (error, data) => {
-      if (error) {
-        res.writeHead(404);
-        res.write(' File not found!');
-      } else {
-        res.write(data);
-      }
-      res.end();
-    });
+    const result = await queries.getOperations(this.user);
+    console.log(result);
+    res.json({ result });
   },
 
 };

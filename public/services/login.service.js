@@ -14,7 +14,6 @@ function loginService(data) {
     }
   };
 }
-// TODO: finish
 function signService(data) {
   const http = new XMLHttpRequest();
   http.open('POST', '/signup');

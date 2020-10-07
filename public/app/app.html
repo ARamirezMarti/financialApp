@@ -26,31 +26,25 @@
                       <th>Budget</th>
                       <th>Diference</th>
                       <th>% of budget</th>
-                      <th>% of budget</th>
+                      
                     </tr>
                     <tr>
                       <td>Total income</td>
-                      <td>x</td>
-                      <td>x</td>
-                      <td>x</td>
-                      <td>x</td>
-                      <td>x</td>
+                      <td id="actualIncome">x</td>
+                      <td id="budgetIncome">x</td>
+                      <td id="diferenceIncome" >12</td>
+                      <td id="percbudIncome" >x</td>
+                     
                     </tr>
                     <tr>
                       <td>Total Expenses</td>
-                      <td>x</td>
-                      <td>x</td>
-                      <td>x</td>
-                      <td>x</td>
-                      <td>x</td>
+                      <td id="actualExpenses">12</td>
+                      <td id="budgedExpenses">21</td>
+                      <td id="diferenceExpense">x</td>
+                      <td id="percbudExpense">x</td>
+                     
                     </tr>
-                    <tr>
-                        <td>Net Amount</td>
-                        <td>x</td>
-                        <td>x</td>
-                        <td>x</td>
-                       
-                      </tr>
+                    
                   </table> 
                   <div class="res col-12">
                     <label for="net"> NET :</label>
@@ -89,7 +83,7 @@
        <!-- Navigation-->
         <nav class="navcontainer col-2">
             <div class="userinfo container">
-                <h4>Nombre</h4>
+                <h4 id="name">Nombre</h4>
                 <h4>Date from</h4>
                 <h4>Date to</h4>
               
@@ -132,8 +126,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
-    <script src="http://localhost:3500/socket.io/socket.io.js"></script>
+    
+    <script type="text/javascript" src="../services/app.service.js"></script>
     <script type="text/javascript" src="./app.js"></script>
 </body>
 </html>

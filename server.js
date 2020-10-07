@@ -3,13 +3,6 @@
 const express = require('express');
 
 const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
-
-module.exports = {
-  io,
-};
-
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
@@ -42,6 +35,6 @@ sqlInstance.connect((err) => {
   console.log('SQL Database online');
 });
 
-server.listen(3500, () => {
+app.listen(3500, () => {
   console.log('server listening on port 3500');
 });
