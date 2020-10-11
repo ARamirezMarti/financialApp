@@ -14,8 +14,10 @@ const userController = {
       if (err) {
         throw err;
       }
+      const colums = ['ACCOUNT_NAME', 'ACCOUNT_PASS', 'ACCOUNT_EMAIL'];
+      const values = [body.ACCOUNT_NAME, result, body.ACCOUNT_EMAIL];
       // Passing an array of form to insert into user table
-      sqlInstance.query('INSERT INTO ACCOUNTS(ACCOUNT_NAME, ACCOUNT_PASS,ACCOUNT_EMAIL) VALUES(?,?,?)', [body.ACCOUNT_NAME, result, body.ACCOUNT_EMAIL], (error, results) => {
+      sqlInstance.query('INSERT INTO ?? (??) VALUES(?)', ['ACCOUNTS', colums, values], (error, results) => {
         if (error) {
           // handle duplicate entry
           if (error.code === 'ER_DUP_ENTRY') {
@@ -25,6 +27,7 @@ const userController = {
             return res.status(400).json({ ok: false, tag: '<span class="alert">Error</span>' });
           }
         }
+        body.id = results.insertId;
 
         const token = JWT.sign(body, 'secret', { expiresIn: '7d' });
         // TODO: - Redirection to App.html or send password incorrect
@@ -41,7 +44,7 @@ const userController = {
     }
 
     // Getting the user info
-    sqlInstance.query('SELECT ACCOUNT_PASS FROM ACCOUNTS WHERE ACCOUNT_EMAIL = ?', [body.ACCOUNT_EMAIL], (error, result) => {
+    sqlInstance.query('SELECT ACCOUNT_PASS,ACCOUNT_ID FROM ACCOUNTS WHERE ACCOUNT_EMAIL = ?', [body.ACCOUNT_EMAIL], (error, result) => {
       if (error) throw error;
 
       // In case of not finding user/password
@@ -53,6 +56,7 @@ const userController = {
         if (err)(console.log(error));
 
         if (unhashed) {
+          body.id = result[0].ACCOUNT_ID;
           const token = JWT.sign(body, 'secret', { expiresIn: '7d' });
 
           //  Redirection to App.html or send password incorrect

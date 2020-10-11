@@ -1,4 +1,6 @@
 /* eslint-disable no-restricted-globals */
+
+
 /* eslint-disable no-undef */
 const signupBtn = document.getElementById('signup');
 const signupSubmit = document.getElementById('signupSubmit');
@@ -33,7 +35,7 @@ logSubmit.addEventListener('click', (e) => {
     ACCOUNT_PASS: passLogin.value,
 
   };
-
+  
   loginService(data);
 });
 
