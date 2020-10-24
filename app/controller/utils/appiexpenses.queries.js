@@ -39,11 +39,11 @@ const expqueries = {
       });
     });
   },
-  deleteexpenses(data) {
+  deleteexpenses(id) {
     return new Promise((resolve, reject) => {
       const ID = data.EXPENSES_ID;
 
-      sqlInstance.query('DELETE FROM ?? WHERE EXPENSES_ID = ? ORDER BY DATE_IN LIMIT 1;', ['EXPENSES', ID], (error, result) => {
+      sqlInstance.query('DELETE FROM ?? WHERE EXPENSES_ID = ? ORDER BY DATE_IN LIMIT 1;', ['EXPENSES', id], (error, result) => {
         if (error) reject(error);
         resolve(result);
       });

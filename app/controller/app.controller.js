@@ -1,12 +1,9 @@
-const path = require('path');
+
 const JWT = require('jsonwebtoken');
 const { incQueries } = require('./utils/appincome.queries');
 // Routes
 const appController = {
   user: {},
-  app(req, res) {
-    res.sendFile(path.resolve(__dirname, '../../public/app.html'));
-  },
   async getdata(req, res) {
     let dec = {};
     JWT.verify(req.cookies.token, process.env.JWT_SECRET, (err, decoded) => {
@@ -15,7 +12,8 @@ const appController = {
     });
 
     await incQueries.getOperations(dec)
-      .then((data) => { res.json({ data }); })
+
+      .then((data) => { res.status(200).json({ data }); })
       .catch((error) => { res.json({ error }); });
   },
 };

@@ -9,19 +9,19 @@ const router = express.Router();
 router.post('/login', userController.login);
 router.post('/signup', userController.signup);
 
-router.get('/app', appController.app);
+
 router.get('/app/getdata', appController.getdata);
 
 // INCOME ROUTES
 router.post('/app/addincome', incomeController.addIncome);
 router.get('/app/getincome', incomeController.getIncomes);
 router.put('/app/updateincome', incomeController.updateIncome);
-router.delete('/app/deleteincome', incomeController.deleteIncome);
+router.delete('/app/deleteincome/:id', incomeController.deleteIncome);
 
 // EXPENSES ROUTES
 router.post('/app/addexpenses', expensesController.addExpenses);
 router.get('/app/getexpenses', expensesController.getExpenses);
 router.put('/app/updateexpenses', expensesController.updateExpenses);
-router.delete('/app/deleteexpenses', expensesController.deleteExpenses);
+router.delete('/app/deleteexpenses/:id', expensesController.deleteExpenses);
 
 module.exports = router;

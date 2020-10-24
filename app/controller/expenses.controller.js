@@ -47,7 +47,7 @@ const expensesController = {
   },
   async deleteExpenses(req, res) {
     let keep = false;
-    const { body } = req;
+    const { id } = req.params;
 
     JWT.verify(req.cookies.token, process.env.JWT_SECRET, (err) => {
       if (err) { keep = false; console.log(err); }
@@ -55,7 +55,7 @@ const expensesController = {
       keep = true;
     });
     if (keep) {
-      await expqueries.deleteexpenses(body)
+      await expqueries.deleteexpenses(id)
         .then((data) => res.json({ data }))
         .catch((error) => {
           console.log(error);

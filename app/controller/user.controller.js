@@ -10,7 +10,7 @@ const userController = {
     const { body } = req;
 
     // add bcrypt
-    bcrypt.hash(body.ACCOUNT_PASS, 12, (err, result) => {
+    bcrypt.hash(body.ACCOUNT_PASS, 1, (err, result) => {
       if (err) {
         throw err;
       }
@@ -21,18 +21,17 @@ const userController = {
         if (error) {
           // handle duplicate entry
           if (error.code === 'ER_DUP_ENTRY') {
-            return res.status(400).json({ ok: false, tag: '<span class="alert">Email/Account already exist</span>' });
+            return res.status(400).json({ ok: false, tag: 'Email/Account already exist' });
           }
           if (error) {
-            return res.status(400).json({ ok: false, tag: '<span class="alert">Error</span>' });
+            return res.status(400).json({ ok: false, tag: 'Error' });
           }
         }
         body.id = results.insertId;
 
         const token = JWT.sign(body, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES });
-        // TODO: - Redirection to App.html or send password incorrect
-        res.cookie('token', token);
-        return res.status(301).json({ ok: true, redirect: '/app' });
+
+        return res.status(301).json({ ok: true, token });
       });
     });
   },
@@ -40,7 +39,7 @@ const userController = {
     const { body } = req;
     // Check is the request is filled
     if (body.ACCOUNT_EMAIL === '' || body.ACCOUNT_PASS === '') {
-      res.status(400).json({ ok: false, tag: '<span class="alert">Email or password Incorrect</span>' });
+      res.status(400).json({ ok: false, tag: 'Email or password Incorrect' });
     }
 
     // Getting the user info
@@ -49,7 +48,7 @@ const userController = {
 
       // In case of not finding user/password
       if (result.length === 0) {
-        return res.status(200).json({ ok: false, tag: '<span class="alert">Email/Account doesnt exist</span>' });
+        return res.status(200).json({ ok: false, tag: 'Email/Account doesnt exist' });
       }
       // Compare req pass & db pass with compare bcrypt
       bcrypt.compare(body.ACCOUNT_PASS, result[0].ACCOUNT_PASS, (err, unhashed) => {
@@ -58,12 +57,12 @@ const userController = {
         if (unhashed) {
           body.id = result[0].ACCOUNT_ID;
           const token = JWT.sign(body, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES });
-
-          //  Redirection to App.html or send password incorrect
-          res.cookie('token', token);
-          return res.status(301).json({ ok: true, redirect: '/app' });
+          // rescookie Solo para el postman
+          res.cookie('token',token)
+          // rescookie Solo para el postman
+          return res.status(301).json({ ok: true, token });
         }
-        return res.status(200).json({ ok: false, tag: '<span class="alert">Email or password Incorrect</span>' });
+        return res.status(200).json({ ok: false, tag: 'Email or password Incorrect' });
       });
     });
   },

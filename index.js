@@ -5,21 +5,26 @@ const app = express();
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const path = require('path');
-const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const SQL = require('./app/db/database');
 
+ app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'PUT','OPTIONS', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  allowedHeaders: ['Access-Control-Allow-Headers', 'X-Requested-With,content-type'],
+  credentials: true,
+})); 
 
-app.use(cookieParser());
-app.use(cors({
-  origin: true,
-  methods: ['GET', 'PUT', 'POST', 'DELETE'],
-  allowedHeaders: ['Authorization, X-API-KEY, application/json ,Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method', 'text/plain'],
-}));
 
 app.use(bodyParser.json());
+app.use(helmet());
+app.use(morgan('dev'));
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.resolve(`${__dirname}/public`)));
+
 // eslint-disable-next-line import/no-dynamic-require
 app.use(require(path.join(__dirname, './app/routes/routes')));
 

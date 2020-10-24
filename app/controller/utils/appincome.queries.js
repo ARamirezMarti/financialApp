@@ -50,12 +50,13 @@ const incQueries = {
       });
     });
   },
-  deleteincome(data) {
+  deleteincome(id) {
     return new Promise((resolve, reject) => {
-      const ID = data.INCOME_ID;
+      ;
 
-      sqlInstance.query('DELETE FROM ?? WHERE INCOME_ID = ? ORDER BY DATE_IN LIMIT 1;', ['INCOME', ID], (error, result) => {
+      sqlInstance.query('DELETE FROM ?? WHERE INCOME_ID = ? ORDER BY DATE_IN LIMIT 1;', ['INCOME', id], (error, result) => {
         if (error) reject(error);
+        console.log(result);
         resolve(result);
       });
     });
