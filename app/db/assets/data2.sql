@@ -104,9 +104,7 @@ END;
 $$
 DELIMITER ;
 
-//TODO : No acaba de funcionar al crear la base de datos
 DELIMITER $$
-DROP TRIGGER IF EXISTS `initial_Entry`;
 
  CREATE TRIGGER initial_Entry
    AFTER INSERT ON ACCOUNTS
