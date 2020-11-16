@@ -19,6 +19,7 @@ const SQL = require('./app/db/database');
 })); 
 
 
+
 app.use(bodyParser.json());
 app.use(helmet());
 app.use(morgan('dev'));

@@ -1,4 +1,4 @@
 node_modules
 example.webp
-/db/db_data
+app/db/db_data
 app/db/assets/queryhelper.txt

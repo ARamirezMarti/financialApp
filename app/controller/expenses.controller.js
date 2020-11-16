@@ -5,11 +5,12 @@ const expensesController = {
   // EXPENSES
   async addExpenses(req, res) {
     const { body } = req;
-    let dec = {};
 
-    JWT.verify(req.cookies.token, process.env.JWT_SECRET, (err, decoded) => {
-      if (err) { console.log(err); }
-      dec = decoded;
+    const dec = JWT.verify(req.cookies.token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        throw new Error(err);
+      }
+      return decoded;
     });
     await expqueries.addexpenses(body, dec)
       .then((data) => res.json({ data }))
@@ -17,48 +18,52 @@ const expensesController = {
         if (error.code === 'ER_TRUNCATED_WRONG_VALUE_FOR_FIELD') {
           res.json({ ok: false, e: 'truncadito' });
         }
-        console.log('Error', error.code);
+        throw new Error(error);
       });
   },
   async getExpenses(req, res) {
-    let dec = {};
-
-    JWT.verify(req.cookies.token, process.env.JWT_SECRET, (err, decoded) => {
-      if (err) { console.log(err); }
-      dec = decoded;
+    const dec = JWT.verify(req.cookies.token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        throw new Error(err);
+      }
+      return decoded;
     });
     await expqueries.getexpenses(dec)
       .then((data) => res.json({ data }))
       .catch((error) => {
-        console.log(error);
+        throw new Error(error);
       });
   },
   async updateExpenses(req, res) {
     const { body } = req;
 
     JWT.verify(req.cookies.token, process.env.JWT_SECRET, (err) => {
-      if (err) { console.log(err); }
+      if (err) {
+        throw new Error(err);
+      }
     });
     await expqueries.updateexpenses(body)
       .then((data) => res.json({ data }))
       .catch((error) => {
-        console.log(error);
+        throw new Error(error);
       });
   },
   async deleteExpenses(req, res) {
     let keep = false;
     const { id } = req.params;
 
-    JWT.verify(req.cookies.token, process.env.JWT_SECRET, (err) => {
-      if (err) { keep = false; console.log(err); }
+    keep = JWT.verify(req.cookies.token, process.env.JWT_SECRET, (err) => {
+      if (err) {
+        keep = false; throw new Error(err);
+      }
 
-      keep = true;
+      return true;
     });
     if (keep) {
       await expqueries.deleteexpenses(id)
         .then((data) => res.json({ data }))
         .catch((error) => {
-          console.log(error);
+          throw new Error(error);
         });
     } else {
       res.end();

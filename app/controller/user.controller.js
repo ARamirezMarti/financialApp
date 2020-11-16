@@ -10,7 +10,7 @@ const userController = {
     const { body } = req;
 
     // add bcrypt
-    bcrypt.hash(body.ACCOUNT_PASS, 1, (err, result) => {
+    bcrypt.hash(body.ACCOUNT_PASS, 5, (err, result) => {
       if (err) {
         throw err;
       }
@@ -30,7 +30,7 @@ const userController = {
         body.id = results.insertId;
 
         const token = JWT.sign(body, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES });
-
+      
         return res.status(301).json({ ok: true, token });
       });
     });
@@ -44,7 +44,7 @@ const userController = {
 
     // Getting the user info
     sqlInstance.query('SELECT ACCOUNT_PASS,ACCOUNT_ID FROM ACCOUNTS WHERE ACCOUNT_EMAIL = ?', [body.ACCOUNT_EMAIL], (error, result) => {
-      if (error) throw error;
+      if (error) throw new Error(error);
 
       // In case of not finding user/password
       if (result.length === 0) {
@@ -58,7 +58,7 @@ const userController = {
           body.id = result[0].ACCOUNT_ID;
           const token = JWT.sign(body, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES });
           // rescookie Solo para el postman
-          res.cookie('token',token)
+          res.cookie('token', token);
           // rescookie Solo para el postman
           return res.status(301).json({ ok: true, token });
         }
