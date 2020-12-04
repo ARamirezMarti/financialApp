@@ -1,5 +1,5 @@
 const JWT = require('jsonwebtoken');
-const { expqueries } = require('./utils/appiexpenses.queries');
+const { expqueries } = require('./utils/expenses.queries');
 
 const expensesController = {
   // EXPENSES

@@ -1,5 +1,5 @@
 const JWT = require('jsonwebtoken');
-const { incQueries } = require('./utils/appincome.queries');
+const { incQueries } = require('./utils/income.queries');
 
 const incomeController = {
   // INCOMES
@@ -30,7 +30,7 @@ const incomeController = {
       return decoded;
     });
     await incQueries.getincomes(dec)
-      .then((data) => res.json({ data }))
+      .then((data) =>  res.json({ data }))
       .catch((error) => {
         throw new Error(error);
       });

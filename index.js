@@ -42,5 +42,5 @@ sqlInstance.connect((err) => {
 });
 
 app.listen(process.env.APP_PORT || 3000, () => {
-  console.log(`server listening on port ${process.env.APP_PORT}`);
+  console.log(`Server listening on port ${process.env.APP_PORT}`);
 });
